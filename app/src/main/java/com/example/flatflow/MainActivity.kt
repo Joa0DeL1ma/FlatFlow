@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -18,9 +17,23 @@ class MainActivity : ComponentActivity() {
             FlatFlowTheme {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "login") {
-                    composable("login") { LoginScreen(modifier = Modifier, navController) }
-                    composable("loading") { LoadingScreen(modifier = Modifier, navController) }
-                    composable("enterRepublic") { EnterRepublicScreen() }
+                    composable("login") { LoginScreen(navController) }
+                    composable("register") { RegisterScreen(navController) }
+                    composable("enterRepublic") { EnterRepublicScreen(navController) }
+
+                    // Rota para a tela de loading com parâmetros
+                    composable("loading/{time}/{destination}") { backStackEntry ->
+                        // Recupera os parâmetros da navegação
+                        val time = backStackEntry.arguments?.getString("time")?.toIntOrNull() ?: 0
+                        val destination = backStackEntry.arguments?.getString("destination") ?: "login"
+
+                        // Chama a tela de loading passando os parâmetros
+                        LoadingScreen(
+                            navController = navController,
+                            time = time,
+                            destination = destination,
+                        )
+                    }
                 }
             }
         }

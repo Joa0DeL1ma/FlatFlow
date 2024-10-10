@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package com.example.flatflow
 
 import androidx.compose.foundation.background
@@ -13,31 +15,37 @@ import androidx.navigation.NavHostController
 import com.airbnb.lottie.compose.*
 import kotlinx.coroutines.delay
 
+@Suppress("ktlint:standard:function-naming")
 @Composable
-fun LoadingScreen(modifier: Modifier, navController: NavHostController) {
+fun LoadingScreen(
+    navController: NavHostController,
+    time: Int,
+    destination: String,
+) {
     // Lottie Animation
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.loading_animation))
     val progress by animateLottieCompositionAsState(composition, iterations = LottieConstants.IterateForever)
 
     // Delayed navigation after 2 seconds
     LaunchedEffect(Unit) {
-        delay(2000)
-        navController.navigate("nextScreen") {
-            popUpTo("loading") { inclusive = true }  // Remove a tela de carregamento da pilha
+        delay(time.toLong())
+        navController.navigate(destination) {
+            popUpTo("loading") { inclusive = true }
         }
     }
 
     // Tela de carregamento
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(Color(0xff005BC5)),
-        contentAlignment = Alignment.Center
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Color(0xff005BC5)),
+        contentAlignment = Alignment.Center,
     ) {
         LottieAnimation(
             composition = composition,
             progress = progress,
-            modifier = Modifier.size(150.dp)
+            modifier = Modifier.size(150.dp),
         )
     }
 }

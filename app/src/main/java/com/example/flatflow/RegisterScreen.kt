@@ -8,32 +8,51 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.flatflow.ui.theme.FlatFlowTheme
 
-//TODO ajustar cores do textField`s,
+// TODO ajustar cores do textField`s,
 
+@Suppress("ktlint:standard:function-naming")
 @Composable
-fun RegisterScreen(modifier: Modifier = Modifier) {
+fun RegisterScreen(
+    navController: NavHostController,
+) {
+    var enableMinCharAlert by remember { mutableStateOf(false) }
+    var enablePasswordWontMatchAlert by remember { mutableStateOf(false) }
+    var enableRegisterButton by remember { mutableStateOf(false) }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var repeatPassword by remember { mutableStateOf("") }
+
     Column(
         modifier =
-        modifier
-            .fillMaxSize()
-            .background(Color(color = 0xff005BC5))
-            .padding(horizontal = 48.dp),
+            Modifier
+                .fillMaxSize()
+                .background(Color(color = 0xff005BC5))
+                .padding(horizontal = 48.dp),
         verticalArrangement = Arrangement.Center,
     ) {
         Column(
@@ -49,58 +68,114 @@ fun RegisterScreen(modifier: Modifier = Modifier) {
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = "",
-                onValueChange = {},
+                value = email,
+                onValueChange = { email = it
+                    if (email != "") {
+                        if (password != "" && repeatPassword != "") {
+                            enableRegisterButton = true
+                        }
+                    }
+                    else {
+                        enableRegisterButton = false
+                    }},
                 label = { Text(text = "Email") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = "",
-                onValueChange = {},
+                value = password,
+                onValueChange = {
+                    password = it
+                    if (it.length <= 8) {
+                        enableMinCharAlert = true
+                    }
+                    if (password != "") {
+                        if (email != "" && repeatPassword != "") {
+                            enableRegisterButton = true
+                        }
+                    }
+                    else {
+                        enableRegisterButton = false
+                    }
+                },
                 label = { Text(text = "Password") },
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = "",
-                onValueChange = {},
+                value = repeatPassword,
+                onValueChange = {
+                    repeatPassword = it
+                    if (it.length < 8) {
+                        enableRegisterButton = false
+                    }
+                    if (repeatPassword.length >= 8) {
+                        if (email != "" && password != "") {
+                            enableRegisterButton = true
+                        }
+                    }
+                    else {
+                        enableRegisterButton = false
+                    }
+                },
                 label = { Text(text = "Repeat Password") },
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             )
         }
-        Text(
-            modifier = Modifier.padding(top = 4.dp),
-            color = Color.Gray,
-            text = "* Minimum 8 char`s")
+        if (enableMinCharAlert) {
+            Text(
+                modifier = Modifier.padding(top = 4.dp),
+                color = Color.Yellow,
+                text = "* Minimum 8 char`s",
+            )
+        }
+        if (enablePasswordWontMatchAlert) {
+            Text(
+                modifier = Modifier.padding(top = 4.dp),
+                text = "* Password wont match",
+                color = Color.Yellow,
+            )
+        }
         Column(
             modifier = Modifier.padding(vertical = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Button(
                 modifier = Modifier.fillMaxWidth(),
+                enabled = enableRegisterButton,
                 colors =
-                ButtonColors(
-                    containerColor = Color.White,
-                    contentColor = Color.Black,
-                    disabledContentColor = Color.White,
-                    disabledContainerColor = Color.Gray,
-                ),
+                    ButtonColors(
+                        containerColor = Color.White,
+                        contentColor = Color.Black,
+                        disabledContentColor = Color.White,
+                        disabledContainerColor = Color.Gray,
+                    ),
                 elevation = ButtonDefaults.buttonElevation(8.dp),
                 shape = RoundedCornerShape(6.dp),
-                onClick = { /*TODO*/ },
+                onClick = {
+                    if (password != repeatPassword) {
+                        enablePasswordWontMatchAlert = true
+                    } else if (email != "" && repeatPassword.length >= 8) {
+                        navController.navigate("loading/2000/enterRepublic")
+                    }
+                },
             ) {
                 Text(fontSize = 16.sp, text = "Register Account")
             }
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 colors =
-                ButtonColors(
-                    containerColor = Color.White,
-                    contentColor = Color.Black,
-                    disabledContentColor = Color.White,
-                    disabledContainerColor = Color.Gray,
-                ),
+                    ButtonColors(
+                        containerColor = Color.White,
+                        contentColor = Color.Black,
+                        disabledContentColor = Color.White,
+                        disabledContainerColor = Color.Gray,
+                    ),
                 elevation = ButtonDefaults.buttonElevation(8.dp),
                 shape = RoundedCornerShape(6.dp),
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("loading/1000/login") },
             ) {
                 Text(fontSize = 16.sp, text = "Login")
             }
@@ -108,10 +183,11 @@ fun RegisterScreen(modifier: Modifier = Modifier) {
     }
 }
 
+@Suppress("ktlint:standard:function-naming")
 @Preview
 @Composable
 private fun RegisterScreenPreview() {
-    MaterialTheme {
-        RegisterScreen()
+    FlatFlowTheme {
+        RegisterScreen(navController = rememberNavController())
     }
 }

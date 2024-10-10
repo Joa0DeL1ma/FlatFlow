@@ -28,19 +28,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
-//TODO ajustar cores do textField`s,
+// TODO ajustar cores do textField`s,
 
+@Suppress("ktlint:standard:function-naming")
 @Composable
-fun EnterRepublicScreen(modifier: Modifier = Modifier) {
+fun EnterRepublicScreen(navController: NavHostController) {
     var insertCodeError by remember { mutableStateOf(false) }
 
     Column(
         modifier =
-        modifier
-            .fillMaxSize()
-            .background(Color(color = 0xff005BC5))
-            .padding(horizontal = 48.dp),
+            Modifier
+                .fillMaxSize()
+                .background(Color(color = 0xff005BC5))
+                .padding(horizontal = 48.dp),
         verticalArrangement = Arrangement.Center,
     ) {
         Column(
@@ -60,41 +63,41 @@ fun EnterRepublicScreen(modifier: Modifier = Modifier) {
                 onValueChange = {},
                 label = { Text(text = "Code...") },
                 trailingIcon =
-                {
-                    IconButton(
-                        onClick = { /*TODO*/ },
-                        content = {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_login),
-                                contentDescription = ""
-                            )
-                        }
-                    )
-                }
+                    {
+                        IconButton(
+                            onClick = { /*TODO*/ },
+                            content = {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.ic_login),
+                                    contentDescription = "",
+                                )
+                            },
+                        )
+                    },
             )
         }
-        //TODO Realizar verificaçao de retorno do back, caso o código não bata com
-        //TODO nenhum código de república, ele mudara o insertCodeError para true
-        if (insertCodeError){
+        // TODO Realizar verificaçao de retorno do back, caso o código não bata com
+        // TODO nenhum código de república, ele mudara o insertCodeError para true
+        if (insertCodeError) {
             Text(
                 modifier = Modifier.padding(top = 4.dp),
                 text = "* Enter correct code",
-                color = Color.Yellow
+                color = Color.Yellow,
             )
         }
         Column(
             modifier = Modifier.padding(vertical = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 colors =
-                ButtonColors(
-                    containerColor = Color.White,
-                    contentColor = Color.Black,
-                    disabledContentColor = Color.White,
-                    disabledContainerColor = Color.Gray,
-                ),
+                    ButtonColors(
+                        containerColor = Color.White,
+                        contentColor = Color.Black,
+                        disabledContentColor = Color.White,
+                        disabledContainerColor = Color.Gray,
+                    ),
                 elevation = ButtonDefaults.buttonElevation(8.dp),
                 shape = RoundedCornerShape(6.dp),
                 onClick = { /*TODO*/ },
@@ -104,12 +107,12 @@ fun EnterRepublicScreen(modifier: Modifier = Modifier) {
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 colors =
-                ButtonColors(
-                    containerColor = Color.White,
-                    contentColor = Color.Black,
-                    disabledContentColor = Color.White,
-                    disabledContainerColor = Color.Gray,
-                ),
+                    ButtonColors(
+                        containerColor = Color.White,
+                        contentColor = Color.Black,
+                        disabledContentColor = Color.White,
+                        disabledContainerColor = Color.Gray,
+                    ),
                 elevation = ButtonDefaults.buttonElevation(8.dp),
                 shape = RoundedCornerShape(6.dp),
                 onClick = { /*TODO*/ },
@@ -120,10 +123,11 @@ fun EnterRepublicScreen(modifier: Modifier = Modifier) {
     }
 }
 
+@Suppress("ktlint:standard:function-naming")
 @Preview
 @Composable
 private fun EnterRepublicScreenPreview() {
     MaterialTheme {
-        EnterRepublicScreen()
+        EnterRepublicScreen(navController = rememberNavController())
     }
 }
