@@ -51,19 +51,19 @@ fun RegisterScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier.fillMaxWidth(),
                 value = "",
                 onValueChange = {},
-                label = { Text(text = "Email...") },
+                label = { Text(text = "Email") },
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = "",
                 onValueChange = {},
-                label = { Text(text = "Password...") },
+                label = { Text(text = "Password") },
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = "",
                 onValueChange = {},
-                label = { Text(text = "Repeat Password...") },
+                label = { Text(text = "Repeat Password") },
             )
         }
         Text(

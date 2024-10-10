@@ -13,6 +13,7 @@ drawable ic_login
 drawable ic_logo
 mipmap ic_launcher
 mipmap ic_launcher_round
+raw loading_animation
 string app_name
 style Theme.FlatFlow
 xml backup_rules

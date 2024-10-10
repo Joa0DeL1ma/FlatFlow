@@ -16,18 +16,38 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.flatflow.model.mockUsers
 
 //TODO ajustar cores do textField`s,
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
+fun LoginScreen(modifier: Modifier = Modifier, navController: NavHostController) {
+
+    //todo viewmodel aqui
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var enableWrongLoginAlert by remember { mutableStateOf(false) }
+    fun verifyLogin(email: String, password: String): Boolean {
+        return mockUsers.any { mockUser ->
+            mockUser.email == email && mockUser.password == password
+        }
+    }
+    //todo
     Column(
         modifier =
         modifier
@@ -44,20 +64,28 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             Icon(
                 modifier = Modifier.size(130.dp),
                 painter = painterResource(id = R.drawable.ic_logo),
-                contentDescription = "",
+                contentDescription = "FlatFlow Logo",
                 tint = Color.White,
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = "",
-                onValueChange = {},
-                label = { Text(text = "Email...") },
+                value = email,
+                onValueChange = { email = it },
+                label = { Text(text = "Email") },
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = "",
-                onValueChange = {},
-                label = { Text(text = "Password...") },
+                value = password,
+                onValueChange = { password = it },
+                label = { Text(text = "Password") },
+                visualTransformation = PasswordVisualTransformation()
+            )
+        }
+        if (enableWrongLoginAlert) {
+            Text(
+                modifier = Modifier.padding(top = 4.dp),
+                text = "* Wrong email or password",
+                color = Color.Yellow
             )
         }
         Column(
@@ -75,7 +103,13 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                 ),
                 elevation = ButtonDefaults.buttonElevation(8.dp),
                 shape = RoundedCornerShape(6.dp),
-                onClick = { /*TODO*/ },
+                onClick = {
+                    if (verifyLogin(email, password)) {
+                        navController.navigate("loading")
+                    } else {
+                        enableWrongLoginAlert = true
+                    }
+                },
             ) {
                 Text(fontSize = 16.sp, text = "Login")
             }
@@ -90,7 +124,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                 ),
                 elevation = ButtonDefaults.buttonElevation(8.dp),
                 shape = RoundedCornerShape(6.dp),
-                onClick = { /*TODO*/ },
+                onClick = { /*TODO colocar navigation para tela de register aqui*/ },
             ) {
                 Text(fontSize = 16.sp, text = "Register")
             }
@@ -101,7 +135,5 @@ fun LoginScreen(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun LoginScreenPreview() {
-    MaterialTheme {
-        LoginScreen()
-    }
+    LoginScreen(navController = rememberNavController())
 }
