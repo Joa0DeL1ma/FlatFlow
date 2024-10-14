@@ -7,6 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.flatflow.login.EnterRepublicScreen
+import com.example.flatflow.login.LoadingScreen
+import com.example.flatflow.login.LoginScreen
+import com.example.flatflow.login.RegisterScreen
 import com.example.flatflow.ui.theme.FlatFlowTheme
 
 class MainActivity : ComponentActivity() {
