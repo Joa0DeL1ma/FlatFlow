@@ -24,6 +24,10 @@
         "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/xml/backup_rules.xml"
     },
     {
+        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/drawable_ic_delete.xml.flat",
+        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/drawable/ic_delete.xml"
+    },
+    {
         "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
@@ -68,12 +72,12 @@
         "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/drawable/ic_group.xml"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.example.flatflow.app-debug-59:/drawable_ic_add.xml.flat",
+        "source": "com.example.flatflow.app-main-61:/drawable/ic_add.xml"
     },
     {
-        "merged": "com.example.flatflow.app-debug-59:/drawable_ic_logo.xml.flat",
-        "source": "com.example.flatflow.app-main-61:/drawable/ic_logo.xml"
+        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
         "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-mdpi_ic_launcher.webp.flat",
