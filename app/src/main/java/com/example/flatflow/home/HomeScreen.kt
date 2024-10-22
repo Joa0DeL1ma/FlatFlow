@@ -6,10 +6,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,29 +24,39 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.flatflow.R
+import com.example.flatflow.home.widgets.BillCard
+import com.example.flatflow.home.widgets.CleaningCard
 import com.example.flatflow.home.widgets.HomeTopAppBar
-
+import com.example.flatflow.model.billCardMock
+import com.example.flatflow.model.cleaningCardMock
 
 
 @Suppress("ktlint:standard:function-naming")
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController) {
     Column(
         modifier =
-            Modifier
-                .background(Color(0xff005BC5))
-                .fillMaxSize()
-                .padding(start = 16.dp, top = 12.dp, end = 16.dp),
+        Modifier
+            .background(Color(0xff005BC5))
+            .fillMaxSize()
+            .padding(start = 16.dp, top = 12.dp, end = 16.dp),
     ) {
-        HomeTopAppBar(modifier = Modifier.padding(bottom = 16.dp))
+        HomeTopAppBar(
+            modifier = Modifier.padding(
+                top = 6.dp,
+                bottom = 16.dp
+            )
+        )
         Column(
             modifier =
-                Modifier
-                    .clip(RoundedCornerShape(topStart = 36.dp, topEnd = 36.dp))
-                    .fillMaxWidth()
-                    .heightIn(min = 300.dp)
-                    .background(Color.White),
+            Modifier
+                .clip(RoundedCornerShape(topStart = 36.dp, topEnd = 36.dp))
+                .fillMaxWidth()
+                .heightIn(min = 300.dp)
+                .background(Color.White),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Row(
@@ -76,24 +86,27 @@ fun HomeScreen() {
                             tint = Color.Gray,
                         )
                     },
-                    onClick = { /*TODO*/ },
+                    onClick = { /*TODO*/ }
                 )
             }
             LazyRow {
-//
+
             }
         }
+        // Cleaning Calendar
         Column(
             modifier =
-                Modifier
-                    .padding(top = 16.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .heightIn(150.dp)
-                    .fillMaxWidth()
-                    .background(Color.White),
+            Modifier
+                .padding(top = 16.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .heightIn(150.dp)
+                .fillMaxWidth()
+                .background(Color.White),
         ) {
             Row(
-                modifier = Modifier.padding(start = 12.dp).fillMaxWidth(),
+                modifier = Modifier
+                    .padding(start = 12.dp)
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
@@ -107,7 +120,7 @@ fun HomeScreen() {
                                 tint = Color.Gray,
                             )
                         },
-                        onClick = { /*TODO*/ },
+                        onClick = { /*TODO*/ }
                     )
                     IconButton(
                         content = {
@@ -117,14 +130,20 @@ fun HomeScreen() {
                                 tint = Color.Gray,
                             )
                         },
-                        onClick = { /*TODO*/ },
+                        onClick = { /*TODO*/ }
                     )
                 }
             }
-            LazyRow {
-                (cleaningCardMock)
+            LazyRow(
+                modifier = Modifier.padding(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(cleaningCardMock) { item ->
+                    CleaningCard(task = item)
+                }
             }
         }
+        //Bills Calendar
         Column(
             modifier =
             Modifier
@@ -135,7 +154,9 @@ fun HomeScreen() {
                 .background(Color.White),
         ) {
             Row(
-                modifier = Modifier.padding(start = 12.dp).fillMaxWidth(),
+                modifier = Modifier
+                    .padding(start = 12.dp)
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
@@ -163,13 +184,20 @@ fun HomeScreen() {
                     )
                 }
             }
+            LazyRow(
+                modifier = Modifier.padding(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(billCardMock) { item ->
+                    BillCard(card = item)
+                }
+            }
         }
     }
 }
 
-@Suppress("ktlint:standard:function-naming")
 @Preview
 @Composable
-private fun HomeScreenPreview() {
-    HomeScreen()
+fun HomeScreenPreview() {
+    HomeScreen(navController = rememberNavController())
 }

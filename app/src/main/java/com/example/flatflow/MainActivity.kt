@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.flatflow.home.HomeScreen
 import com.example.flatflow.login.EnterRepublicScreen
 import com.example.flatflow.login.LoadingScreen
 import com.example.flatflow.login.LoginScreen
@@ -20,10 +21,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             FlatFlowTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "login") {
+                NavHost(navController = navController, startDestination = "home") {
+                    composable("home") { HomeScreen(navController) }
                     composable("login") { LoginScreen(navController) }
                     composable("register") { RegisterScreen(navController) }
                     composable("enterRepublic") { EnterRepublicScreen(navController) }
+                    composable("home") { HomeScreen(navController) }
 
                     // Rota para a tela de loading com parâmetros
                     composable("loading/{time}/{destination}") { backStackEntry ->

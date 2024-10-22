@@ -1,90 +1,90 @@
 [
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "com.example.flatflow.app-debug-59:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.flatflow.app-main-61:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/drawable_ic_logo.xml.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/drawable/ic_logo.xml"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-anydpi_ic_launcher.xml.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-anydpi/ic_launcher.xml"
+        "merged": "com.example.flatflow.app-debug-59:/drawable_ic_login.xml.flat",
+        "source": "com.example.flatflow.app-main-61:/drawable/ic_login.xml"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/raw_loading_animation.json.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/raw/loading_animation.json"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/xml_backup_rules.xml.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/xml/backup_rules.xml"
+        "merged": "com.example.flatflow.app-debug-59:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.flatflow.app-main-61:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/drawable_ic_delete.xml.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/drawable/ic_delete.xml"
+        "merged": "com.example.flatflow.app-debug-59:/drawable_ic_delete.xml.flat",
+        "source": "com.example.flatflow.app-main-61:/drawable/ic_delete.xml"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "com.example.flatflow.app-debug-59:/raw_loading_animation.json.flat",
+        "source": "com.example.flatflow.app-main-61:/raw/loading_animation.json"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/xml_data_extraction_rules.xml.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/xml/data_extraction_rules.xml"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-anydpi/ic_launcher.xml"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.example.flatflow.app-debug-59:/xml_backup_rules.xml.flat",
+        "source": "com.example.flatflow.app-main-61:/xml/backup_rules.xml"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-anydpi/ic_launcher_round.xml"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-anydpi_ic_launcher_round.xml.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-anydpi/ic_launcher_round.xml"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.example.flatflow.app-debug-59:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.flatflow.app-main-61:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/drawable_ic_launcher_background.xml.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/drawable/ic_launcher_background.xml"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/drawable_ic_login.xml.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/drawable/ic_login.xml"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/drawable_ic_group.xml.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/drawable/ic_group.xml"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
         "merged": "com.example.flatflow.app-debug-59:/drawable_ic_add.xml.flat",
         "source": "com.example.flatflow.app-main-61:/drawable/ic_add.xml"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.example.flatflow.app-debug-59:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.flatflow.app-main-61:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.example.flatflow.app-debug-59:/drawable_ic_logo.xml.flat",
+        "source": "com.example.flatflow.app-main-61:/drawable/ic_logo.xml"
     },
     {
-        "merged": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-debug-59:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/dmbrasil/.gradle/daemon/8.7/com.example.flatflow.app-main-61:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "com.example.flatflow.app-debug-59:/drawable_ic_group.xml.flat",
+        "source": "com.example.flatflow.app-main-61:/drawable/ic_group.xml"
     }
 ]
