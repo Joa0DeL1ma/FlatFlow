@@ -105,12 +105,16 @@ fun HomeScreen(navController: NavHostController) {
         ) {
             Row(
                 modifier = Modifier
-                    .padding(start = 12.dp)
+                    .padding(start = 16.dp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                Text(fontSize = 16.sp, fontWeight = FontWeight.Bold, text = "Cleaning Calendar")
+                Text(
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    text = "Cleaning Calendar"
+                )
                 Row {
                     IconButton(
                         content = {
@@ -135,7 +139,7 @@ fun HomeScreen(navController: NavHostController) {
                 }
             }
             LazyRow(
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(cleaningCardMock) { item ->
@@ -155,12 +159,15 @@ fun HomeScreen(navController: NavHostController) {
         ) {
             Row(
                 modifier = Modifier
-                    .padding(start = 12.dp)
+                    .padding(start = 16.dp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                Text(fontSize = 16.sp, fontWeight = FontWeight.Bold, text = "Bills Calendar")
+                Text(
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    text = "Bills Calendar")
                 Row {
                     IconButton(
                         content = {
@@ -185,7 +192,7 @@ fun HomeScreen(navController: NavHostController) {
                 }
             }
             LazyRow(
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(billCardMock) { item ->
