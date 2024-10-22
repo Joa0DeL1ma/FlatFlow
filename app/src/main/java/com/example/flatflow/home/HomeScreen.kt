@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,6 +26,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.flatflow.R
 import com.example.flatflow.home.widgets.HomeTopAppBar
+
+
 
 @Suppress("ktlint:standard:function-naming")
 @Composable
@@ -76,15 +79,60 @@ fun HomeScreen() {
                     onClick = { /*TODO*/ },
                 )
             }
+            LazyRow {
+//
+            }
         }
         Column(
             modifier =
                 Modifier
-                    .clip(RoundedCornerShape(16.dp))
-                    .height(150.dp)
                     .padding(top = 16.dp)
+                    .clip(RoundedCornerShape(16.dp))
+                    .heightIn(150.dp)
                     .fillMaxWidth()
                     .background(Color.White),
+        ) {
+            Row(
+                modifier = Modifier.padding(start = 12.dp).fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                Text(fontSize = 16.sp, fontWeight = FontWeight.Bold, text = "Cleaning Calendar")
+                Row {
+                    IconButton(
+                        content = {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_delete),
+                                contentDescription = "Touch to delete card from bulletin board",
+                                tint = Color.Gray,
+                            )
+                        },
+                        onClick = { /*TODO*/ },
+                    )
+                    IconButton(
+                        content = {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_add),
+                                contentDescription = "Touch to add a card to the bulletin board",
+                                tint = Color.Gray,
+                            )
+                        },
+                        onClick = { /*TODO*/ },
+                    )
+                }
+            }
+            LazyRow {
+                (cleaningCardMock)
+            }
+        }
+        Column(
+            modifier =
+            Modifier
+                .padding(top = 16.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .heightIn(150.dp)
+                .fillMaxWidth()
+                .background(Color.White),
         ) {
             Row(
                 modifier = Modifier.padding(start = 12.dp).fillMaxWidth(),
