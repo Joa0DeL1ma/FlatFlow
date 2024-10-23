@@ -43,39 +43,45 @@ fun CreateBillCardScreen(navController: NavHostController) {
     var value by remember { mutableStateOf("") }
     var billName by remember { mutableStateOf("") }
     var expandedRecurrence by remember { mutableStateOf(false) }
+    var expandedWeek by remember { mutableStateOf(false) }
+    var expandedMonth by remember { mutableStateOf(false) }
     var selectedRecurrence by remember { mutableStateOf("") }
+    var selectedWeek by remember { mutableStateOf("") }
+    var selectedMonth by remember { mutableStateOf("") }
 
-    val options = listOf("Monthly", "Weekly")
+    val recurrenceOptions = listOf("Monthly", "Weekly")
+    val dayOfTheWeek = listOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+    val dayOfTheMonth = (1..31).map { it.toString() }
 
     Column(
         modifier =
-            Modifier
-                .background(Color(0xff005BC5))
-                .fillMaxSize()
-                .padding(start = 16.dp, top = 12.dp, end = 16.dp),
+        Modifier
+            .background(Color(0xff005BC5))
+            .fillMaxSize()
+            .padding(start = 16.dp, top = 12.dp, end = 16.dp),
     ) {
         HomeTopAppBar(
             modifier =
-                Modifier.padding(
-                    top = 6.dp,
-                    bottom = 16.dp,
-                ),
+            Modifier.padding(
+                top = 6.dp,
+                bottom = 16.dp,
+            ),
         )
         Column(
             modifier =
-                Modifier
-                    .fillMaxHeight()
-                    .clip(RoundedCornerShape(topStart = 36.dp, topEnd = 36.dp))
-                    .fillMaxWidth()
-                    .heightIn(min = 300.dp)
-                    .background(Color.White)
-                    .padding(16.dp),
+            Modifier
+                .fillMaxHeight()
+                .clip(RoundedCornerShape(topStart = 36.dp, topEnd = 36.dp))
+                .fillMaxWidth()
+                .heightIn(min = 300.dp)
+                .background(Color.White)
+                .padding(16.dp),
         ) {
             Row(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 20.dp),
+                Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 20.dp),
                 horizontalArrangement = Arrangement.Center,
             ) {
                 Text(
@@ -83,7 +89,11 @@ fun CreateBillCardScreen(navController: NavHostController) {
                     fontWeight = FontWeight.Bold,
                     text = "Bills calendar card creation",
                 )
-            } // TODO RECURRENCE
+            }
+
+            // TODO RECURRENCE
+
+
             Text(
                 modifier = Modifier.padding(top = 16.dp, bottom = 8.dp),
                 fontWeight = FontWeight.Bold,
@@ -97,30 +107,30 @@ fun CreateBillCardScreen(navController: NavHostController) {
             ) {
                 OutlinedTextField(
                     colors =
-                        OutlinedTextFieldDefaults.colors(
-                            unfocusedContainerColor = Color.White,
-                            unfocusedBorderColor = Color(0xff005BC5),
-                            focusedContainerColor = Color.White,
-                            focusedBorderColor = Color(0xff005BC5),
-                        ),
+                    OutlinedTextFieldDefaults.colors(
+                        unfocusedContainerColor = Color.White,
+                        unfocusedBorderColor = Color(0xff005BC5),
+                        focusedContainerColor = Color.White,
+                        focusedBorderColor = Color(0xff005BC5),
+                    ),
                     value = selectedRecurrence,
                     onValueChange = {},
                     readOnly = true,
-                    placeholder = { Text("Monthly, weekly", color = Color.LightGray) },
+                    placeholder = { Text("Monthly, weekly...", color = Color.LightGray) },
                     trailingIcon = {
                         ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedRecurrence)
                     },
                     modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .menuAnchor(),
+                    Modifier
+                        .fillMaxWidth()
+                        .menuAnchor(),
                 )
 
                 ExposedDropdownMenu(
                     expanded = expandedRecurrence,
                     onDismissRequest = { expandedRecurrence = false },
                 ) {
-                    options.forEach { option ->
+                    recurrenceOptions.forEach { option ->
                         DropdownMenuItem(
                             text = { Text(option) },
                             onClick = {
@@ -140,42 +150,42 @@ fun CreateBillCardScreen(navController: NavHostController) {
                     text = "Select day of the week",
                 )
                 ExposedDropdownMenuBox(
-                    expanded = expandedRecurrence,
+                    expanded = expandedWeek,
                     onExpandedChange = {
-                        expandedRecurrence = !expandedRecurrence
+                        expandedWeek = !expandedWeek
                     },
                 ) {
                     OutlinedTextField(
                         colors =
-                            OutlinedTextFieldDefaults.colors(
-                                unfocusedContainerColor = Color.White,
-                                unfocusedBorderColor = Color(0xff005BC5),
-                                focusedContainerColor = Color.White,
-                                focusedBorderColor = Color(0xff005BC5),
-                            ),
-                        value = selectedRecurrence,
+                        OutlinedTextFieldDefaults.colors(
+                            unfocusedContainerColor = Color.White,
+                            unfocusedBorderColor = Color(0xff005BC5),
+                            focusedContainerColor = Color.White,
+                            focusedBorderColor = Color(0xff005BC5),
+                        ),
+                        value = selectedWeek,
                         onValueChange = {},
                         readOnly = true,
                         placeholder = { Text("Sunday, monday...", color = Color.LightGray) },
                         trailingIcon = {
-                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedRecurrence)
+                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedWeek)
                         },
                         modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .menuAnchor(),
+                        Modifier
+                            .fillMaxWidth()
+                            .menuAnchor(),
                     )
 
                     ExposedDropdownMenu(
-                        expanded = expandedRecurrence,
-                        onDismissRequest = { expandedRecurrence = false },
+                        expanded = expandedWeek,
+                        onDismissRequest = { expandedWeek = false },
                     ) {
-                        options.forEach { option ->
+                        dayOfTheWeek.forEach { dayOfTheWeek ->
                             DropdownMenuItem(
-                                text = { Text(option) },
+                                text = { Text(dayOfTheWeek) },
                                 onClick = {
-                                    selectedRecurrence = option
-                                    expandedRecurrence = false
+                                    selectedWeek = dayOfTheWeek
+                                    expandedWeek = false
                                 },
                             )
                         }
@@ -192,42 +202,42 @@ fun CreateBillCardScreen(navController: NavHostController) {
                     text = "Select day of the month",
                 )
                 ExposedDropdownMenuBox(
-                    expanded = expandedRecurrence,
+                    expanded = expandedMonth,
                     onExpandedChange = {
-                        expandedRecurrence = !expandedRecurrence
+                        expandedMonth = !expandedMonth
                     },
                 ) {
                     OutlinedTextField(
                         colors =
-                            OutlinedTextFieldDefaults.colors(
-                                unfocusedContainerColor = Color.White,
-                                unfocusedBorderColor = Color(0xff005BC5),
-                                focusedContainerColor = Color.White,
-                                focusedBorderColor = Color(0xff005BC5),
-                            ),
-                        value = selectedRecurrence,
+                        OutlinedTextFieldDefaults.colors(
+                            unfocusedContainerColor = Color.White,
+                            unfocusedBorderColor = Color(0xff005BC5),
+                            focusedContainerColor = Color.White,
+                            focusedBorderColor = Color(0xff005BC5),
+                        ),
+                        value = selectedMonth,
                         onValueChange = {},
                         readOnly = true,
                         placeholder = { Text("Monthly, weekly, daily", color = Color.LightGray) },
                         trailingIcon = {
-                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedRecurrence)
+                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedMonth)
                         },
                         modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .menuAnchor(),
+                        Modifier
+                            .fillMaxWidth()
+                            .menuAnchor(),
                     )
 
                     ExposedDropdownMenu(
-                        expanded = expandedRecurrence,
-                        onDismissRequest = { expandedRecurrence = false },
+                        expanded = expandedMonth,
+                        onDismissRequest = { expandedMonth = false },
                     ) {
-                        options.forEach { option ->
+                        dayOfTheMonth.forEach { dayOfTheMonth ->
                             DropdownMenuItem(
-                                text = { Text(option) },
+                                text = { Text(dayOfTheMonth) },
                                 onClick = {
-                                    selectedRecurrence = option
-                                    expandedRecurrence = false
+                                    selectedMonth = dayOfTheMonth
+                                    expandedMonth = false
                                 },
                             )
                         }
@@ -243,12 +253,12 @@ fun CreateBillCardScreen(navController: NavHostController) {
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 colors =
-                    OutlinedTextFieldDefaults.colors(
-                        unfocusedContainerColor = Color.White,
-                        unfocusedBorderColor = Color(0xff005BC5),
-                        focusedContainerColor = Color.White,
-                        focusedBorderColor = Color(0xff005BC5),
-                    ),
+                OutlinedTextFieldDefaults.colors(
+                    unfocusedContainerColor = Color.White,
+                    unfocusedBorderColor = Color(0xff005BC5),
+                    focusedContainerColor = Color.White,
+                    focusedBorderColor = Color(0xff005BC5),
+                ),
                 value = value,
                 onValueChange = { value = it },
                 placeholder = { Text(color = Color.LightGray, text = "$...") },
@@ -261,12 +271,12 @@ fun CreateBillCardScreen(navController: NavHostController) {
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 colors =
-                    OutlinedTextFieldDefaults.colors(
-                        unfocusedContainerColor = Color.White,
-                        unfocusedBorderColor = Color(0xff005BC5),
-                        focusedContainerColor = Color.White,
-                        focusedBorderColor = Color(0xff005BC5),
-                    ),
+                OutlinedTextFieldDefaults.colors(
+                    unfocusedContainerColor = Color.White,
+                    unfocusedBorderColor = Color(0xff005BC5),
+                    focusedContainerColor = Color.White,
+                    focusedBorderColor = Color(0xff005BC5),
+                ),
                 value = billName,
                 onValueChange = { billName = it },
                 placeholder = { Text(color = Color.LightGray, text = "Light, rent, groceries...") },
@@ -275,17 +285,17 @@ fun CreateBillCardScreen(navController: NavHostController) {
                 enabled = billName.isNotEmpty(),
                 shape = RoundedCornerShape(6.dp),
                 modifier =
-                    Modifier
-                        .padding(top = 32.dp)
-                        .fillMaxWidth()
-                        .height(50.dp),
+                Modifier
+                    .padding(top = 32.dp)
+                    .fillMaxWidth()
+                    .height(50.dp),
                 colors =
-                    ButtonColors(
-                        containerColor = Color(0xff005BC5),
-                        contentColor = Color.White,
-                        disabledContentColor = Color.White,
-                        disabledContainerColor = Color.Gray,
-                    ),
+                ButtonColors(
+                    containerColor = Color(0xff005BC5),
+                    contentColor = Color.White,
+                    disabledContentColor = Color.White,
+                    disabledContainerColor = Color.Gray,
+                ),
                 onClick = {
                     // todo criar a comunicação com o banco aqui
                 },

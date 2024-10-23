@@ -123,7 +123,7 @@ fun CreateBulletinCardScreen(navController: NavHostController) {
                         disabledContainerColor = Color.Gray,
                     ),
                 onClick = {
-                    // todo criar a comunicação com o banco aqui
+                    // TODO criar a comunicação com o banco aqui
                 },
             ) {
                 Text(text = "Create card")
