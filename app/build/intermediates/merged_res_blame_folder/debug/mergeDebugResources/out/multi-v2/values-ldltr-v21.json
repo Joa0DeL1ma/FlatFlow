@@ -4,7 +4,7 @@
             "outputFile": "com.example.flatflow.app-mergeDebugResources-57:/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\lisbo\\.gradle\\caches\\transforms-4\\611657013d216e0431e46bb2c635e007\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "source": "/Users/dmbrasil/.gradle/caches/transforms-4/611657013d216e0431e46bb2c635e007/transformed/appcompat-1.6.1/res/values-ldltr-v21/values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

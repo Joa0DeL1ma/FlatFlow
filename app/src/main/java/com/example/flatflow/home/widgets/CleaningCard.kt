@@ -45,7 +45,7 @@ fun CleaningCard(task: CleaningCardsMock) {
         if (task.dayOfTheWeek != null) {
             Text(
                 fontWeight = FontWeight.Bold,
-                fontSize = 12.sp,
+                fontSize = 16.sp,
                 text = "${task.dayOfTheWeek}",
             )
         }
