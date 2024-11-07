@@ -16,10 +16,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,24 +27,23 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.flatflow.R
 import com.example.flatflow.ui.theme.FlatFlowTheme
 
-// TODO ajustar cores do textField`s,
-
-@Suppress("ktlint:standard:function-naming")
 @Composable
 fun RegisterScreen(
     navController: NavHostController,
+    viewModel: RegisterViewModel = viewModel(),
 ) {
-    var enableMinCharAlert by remember { mutableStateOf(false) }
-    var enablePasswordWontMatchAlert by remember { mutableStateOf(false) }
-    var enableRegisterButton by remember { mutableStateOf(false) }
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var repeatPassword by remember { mutableStateOf("") }
+    val email by viewModel.email.collectAsState()
+    val password by viewModel.password.collectAsState()
+    val repeatPassword by viewModel.repeatPassword.collectAsState()
+    val enableRegisterButton by viewModel.enableRegisterButton.collectAsState()
+    val enableMinCharAlert by viewModel.enableMinCharAlert.collectAsState()
+    val enablePasswordWontMatchAlert by viewModel.enablePasswordWontMatchAlert.collectAsState()
 
     Column(
         modifier =
@@ -56,6 +53,7 @@ fun RegisterScreen(
                 .padding(horizontal = 48.dp),
         verticalArrangement = Arrangement.Center,
     ) {
+        // Seu código da interface permanece o mesmo, mas agora os eventos chamam funções do ViewModel
         Column(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(20.dp),
@@ -70,35 +68,14 @@ fun RegisterScreen(
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = email,
-                onValueChange = { email = it
-                    if (email != "") {
-                        if (password != "" && repeatPassword != "") {
-                            enableRegisterButton = true
-                        }
-                    }
-                    else {
-                        enableRegisterButton = false
-                    }},
+                onValueChange = viewModel::onEmailChange,
                 label = { Text(text = "Email") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = password,
-                onValueChange = {
-                    password = it
-                    if (it.length <= 8) {
-                        enableMinCharAlert = true
-                    }
-                    if (password != "") {
-                        if (email != "" && repeatPassword != "") {
-                            enableRegisterButton = true
-                        }
-                    }
-                    else {
-                        enableRegisterButton = false
-                    }
-                },
+                onValueChange = viewModel::onPasswordChange,
                 label = { Text(text = "Password") },
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -106,20 +83,7 @@ fun RegisterScreen(
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = repeatPassword,
-                onValueChange = {
-                    repeatPassword = it
-                    if (it.length < 8) {
-                        enableRegisterButton = false
-                    }
-                    if (repeatPassword.length >= 8) {
-                        if (email != "" && password != "") {
-                            enableRegisterButton = true
-                        }
-                    }
-                    else {
-                        enableRegisterButton = false
-                    }
-                },
+                onValueChange = viewModel::onRepeatPasswordChange,
                 label = { Text(text = "Repeat Password") },
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -135,7 +99,7 @@ fun RegisterScreen(
         if (enablePasswordWontMatchAlert) {
             Text(
                 modifier = Modifier.padding(top = 4.dp),
-                text = "* Password wont match",
+                text = "* Passwords do not match",
                 color = Color.Yellow,
             )
         }
@@ -156,9 +120,7 @@ fun RegisterScreen(
                 elevation = ButtonDefaults.buttonElevation(8.dp),
                 shape = RoundedCornerShape(6.dp),
                 onClick = {
-                    if (password != repeatPassword) {
-                        enablePasswordWontMatchAlert = true
-                    } else if (email != "" && repeatPassword.length >= 8) {
+                    if (enableRegisterButton) {
                         navController.navigate("loading/2000/enterRepublic")
                     }
                 },

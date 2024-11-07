@@ -9,16 +9,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,28 +26,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.flatflow.R
-import com.example.flatflow.model.mockUsers
 
-// TODO ajustar cores do textField`s,
 
 @Suppress("ktlint:standard:function-naming")
 @Composable
-fun LoginScreen(navController: NavHostController) {
-    // todo viewmodel aqui
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var enableWrongLoginAlert by remember { mutableStateOf(false) }
-    var enableLoginButton by remember { mutableStateOf(false) }
-
-    // Todo vai para o viewmodel
-    fun verifyLogin(
-        email: String,
-        password: String,
-    ): Boolean =
-        mockUsers.any { mockUser ->
-            mockUser.email == email && mockUser.password == password
-        }
-    // todo
+fun LoginScreen(
+    navController: NavHostController,
+    viewModel: LoginViewModel = viewModel(),
+) {
     Column(
         modifier =
             Modifier
@@ -73,37 +55,25 @@ fun LoginScreen(navController: NavHostController) {
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = email,
-                onValueChange = { email = it
-                    if (email != "") {
-                        if (password != "") {
-                            enableLoginButton = true
-                        }
-                    }
-                    else {
-                        enableLoginButton = false
-                    }},
+                value = viewModel.email.value,
+                onValueChange = { newValue ->
+                    viewModel.email.value = newValue
+                    viewModel.updateLoginButtonState()
+                },
                 label = { Text(text = "Email") },
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = password,
-                onValueChange = {
-                    password = it
-                    if (password != "") {
-                        if (email != "") {
-                            enableLoginButton = true
-                        }
-                    }
-                    else {
-                        enableLoginButton = false
-                    }
+                value = viewModel.password.value,
+                onValueChange = { newValue ->
+                    viewModel.password.value = newValue
+                    viewModel.updateLoginButtonState()
                 },
                 label = { Text(text = "Password") },
                 visualTransformation = PasswordVisualTransformation(),
             )
         }
-        if (enableWrongLoginAlert) {
+        if (viewModel.enableWrongLoginAlert.value) {
             Text(
                 modifier = Modifier.padding(top = 4.dp),
                 text = "* Wrong email or password",
@@ -116,21 +86,20 @@ fun LoginScreen(navController: NavHostController) {
         ) {
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                enabled = enableLoginButton,
+                enabled = viewModel.enableLoginButton.value,
                 colors =
-                    ButtonColors(
+                    ButtonDefaults.buttonColors(
                         containerColor = Color.White,
                         contentColor = Color.Black,
-                        disabledContentColor = Color.White,
                         disabledContainerColor = Color.Gray,
                     ),
                 elevation = ButtonDefaults.buttonElevation(8.dp),
                 shape = RoundedCornerShape(6.dp),
                 onClick = {
-                    if (verifyLogin(email, password)) {
+                    if (viewModel.verifyLogin()) {
                         navController.navigate("loading/2000/enterRepublic")
                     } else {
-                        enableWrongLoginAlert = true
+                        viewModel.enableWrongLoginAlert.value = true
                     }
                 },
             ) {
@@ -139,10 +108,9 @@ fun LoginScreen(navController: NavHostController) {
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 colors =
-                    ButtonColors(
+                    ButtonDefaults.buttonColors(
                         containerColor = Color.White,
                         contentColor = Color.Black,
-                        disabledContentColor = Color.White,
                         disabledContainerColor = Color.Gray,
                     ),
                 elevation = ButtonDefaults.buttonElevation(8.dp),
